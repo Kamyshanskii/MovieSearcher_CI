@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Оцените фильмы{% endblock %}
+
+{% block content %}
+<h1>Оцените предложенные фильмы</h1>
+    <form method="post" action="/submit_ratings">
+        {% for movie in movies %}
+        <div style="margin:20px 0;">
+            <h3>{{ movie[1] }} ({{ movie[3] }})</h3>
+            <p>
+                <strong>Жанр:</strong> {{ movie[2] }} |
+                <strong>Страны:</strong> {{ movie[5] }} |
+                <strong>Режиссёр:</strong> {{ movie[6] }} |
+                <strong>Рейтинг:</strong> {{ movie[7] }}
+            </p>
+            <label>
+                <input type="radio" name="movie_{{ movie[0] }}" value="like">
+                👍 Понравилось
+            </label>
+            <label>
+                <input type="radio" name="movie_{{ movie[0] }}" value="dislike">
+                👎 Не понравилось
+            </label>
+        </div>
+        {% endfor %}
+        <button type="submit">Сохранить оценки</button>
+    </form>
+{% endblock %}

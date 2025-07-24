@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Выбор любимых жанров{% endblock %}
+
+{% block content %}
+<h1>Выберите свои любимые жанры</h1>
+    <form method="post" action="/save_genres">
+        <div class="genres-container">
+            {% for g in genres %}
+            <div class="genre-item">
+                <label>
+                    <input type="checkbox" name="genres" value="{{ g }}">
+                    {{ g }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit">Далее</button>
+        </div>
+    </form>
+{% endblock %}

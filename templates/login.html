@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать в MovieSearcher!</h1>
+<h4>Выбери свой профиль или создай новый:</h4>
+    <form method="post" action="/login">
+        <select name="user_name" required>
+            <option value="" disabled selected>-- Выберите пользователя --</option>
+            {% for u in users %}
+            <option value="{{ u }}">{{ u }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Войти</button>
+    </form>
+    <form method="get" action="/new_user">
+        <button>Новый пользователь</button>
+    </form>
+{% endblock %}

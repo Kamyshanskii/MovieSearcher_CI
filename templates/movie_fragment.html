@@ -1,0 +1,31 @@
+<div id="movie_{{ movie[0] }}" class="card card-custom mb-3 p-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>{{ movie[1] }} <small class="text-muted">({{ movie[3] }})</small></h3>
+    <div>
+      <button
+        class="btn btn-outline-success btn-sm me-1"
+          data-movie-id="{{ movie[0] }}"
+          data-rating="like"
+          onclick="rateAndReplace(this.dataset.movieId, this.dataset.rating)"
+        >
+          👍
+        </button>
+        
+        <button
+          class="btn btn-outline-danger btn-sm"
+          data-movie-id="{{ movie[0] }}"
+          data-rating="dislike"
+          onclick="rateAndReplace(this.dataset.movieId, this.dataset.rating)"
+        >
+          👎
+      </button>
+    </div>
+  </div>
+  <p class="mt-2">
+    <strong>Жанр:</strong> {{ movie[2] }} |
+    <strong>Страны:</strong> {{ movie[5] }} |
+    <strong>Режиссёр:</strong> {{ movie[6] }} |
+    <strong>Рейтинг:</strong> <span id="rating_value_{{ movie[0] }}">{{ movie[7] }}</span>
+  </p>
+  <p>{{ movie[4] }}</p>
+</div> 

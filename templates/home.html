@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h1>Привет, {{ user }}!</h1>
+
+  <form method="get" action="/home" style="margin-bottom:10px;">
+    <label>Сортировать:
+      <select name="sort_by" onchange="this.form.submit()">
+        <option value="rating"  {% if sort_by=='rating'  %}selected{% endif %}>По рейтингу </option>
+        <option value="year_asc" {% if sort_by=='year_asc' %}selected{% endif %}>По году (сначала старые)</option>
+        <option value="year_desc"{% if sort_by=='year_desc'%}selected{% endif %}>По году (сначла новые)↓</option>
+      </select>
+    </label>
+    <label style="margin-left:20px;">Страница:
+      <select name="page" onchange="this.form.submit()">
+        {% for p in range(1, total_pages+1) %}
+          <option value="{{p}}" {% if p==page %}selected{% endif %}>{{p}}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </form>
+
+  <form method="get" action="/filter"><button>Фильтры</button></form>
+  <hr>
+
+  <h2>Рекомендации специально для тебя:</h2>
+  {% for movie in movies %}
+    {% include 'movie_fragment.html' %}
+  {% endfor %}
+
+  {% if total_pages > 1 %}
+  <div style="margin-top:20px;">
+    {% if page>1 %}
+      <a href="?page={{page-1}}&sort_by={{sort_by}}">&larr; Предыдущая</a>
+    {% endif %}
+    |
+    {% if page<total_pages %}
+      <a href="?page={{page+1}}&sort_by={{sort_by}}">Следующая &rarr;</a>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endblock %}
